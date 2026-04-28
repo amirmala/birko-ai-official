@@ -1,0 +1,108 @@
+.wifi-gen-container {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 80px 20px;
+  background: #020617;
+}
+
+.wifi-gen-card {
+  background: #0f172a;
+  border: 1px solid rgba(0, 210, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  width: 100%;
+  max-width: 850px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.wifi-settings {
+  flex: 1.2;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wifi-settings h3 { color: #00d2ff; margin-bottom: 25px; }
+
+.input-group { margin-bottom: 20px; }
+.input-group label { display: block; color: #fff; margin-bottom: 8px; font-size: 0.9rem; }
+
+.input-group input, .input-group select {
+  width: 100%;
+  padding: 12px;
+  background: #1e293b;
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  outline: none;
+}
+
+.wifi-result {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.qr-display-area {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.download-btn {
+  background: #00d2ff;
+  color: #0f172a;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.download-btn:hover:not(:disabled) {
+  background: #fff;
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.download-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Toast Style (نفس اللي عملناه للباسورد) */
+.custom-toast {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.9);
+  color: #00d2ff;
+  padding: 12px 25px;
+  border-radius: 50px;
+  border: 1px solid #00d2ff;
+  z-index: 9999;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  backdrop-filter: blur(10px);
+}
+.custom-toast.show { top: 100px; }
+
+@media (max-width: 768px) {
+  .wifi-gen-card { flex-direction: column; }
+  .wifi-settings { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+}

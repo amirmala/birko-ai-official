@@ -1,0 +1,142 @@
+/* --- الأساسيات --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #0f172a;
+  display: flex;
+  align-items: center;
+  z-index: 10000;
+  border-bottom: 1px solid rgba(0, 210, 255, 0.1);
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.logo span { color: #00d2ff; }
+
+/* القائمة في وضع الكمبيوتر */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+/* زرار التلت شرط */
+.menu-icon {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10002;
+}
+
+.bar {
+  width: 100%;
+  height: 3px;
+  background-color: #00d2ff !important;
+  border-radius: 5px;
+  transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6); /* أنيميشن صايع للشرط */
+}
+
+/* --- Responsive للموبايل (التحريك السلس) --- */
+@media (max-width: 992px) {
+  .menu-icon {
+    display: flex !important;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0; /* ثابتة جهة اليمين */
+    width: 280px; /* عرض جانبي */
+    height: 100vh;
+    background-color: #111827 !important; /* لون أغمق سنة للتمييز */
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 30px !important;
+    padding: 0;
+    
+    /* الحركة السموث */
+    transform: translateX(100%); /* بره الشاشة يمين */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 10001;
+    
+    /* حل مشكلة الاختفاء: نأكد إن الـ display شغال بس هي مستخبية بالـ transform */
+    display: flex !important; 
+  }
+
+  /* الكلاس اللي بيتضاف لما تدوس */
+  .nav-links.mobile-open {
+    transform: translateX(0); /* تسحب لداخل الشاشة */
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    opacity: 0; /* عشان نعمل دخول تدريجي للينكات */
+    transform: translateX(50px);
+    transition: 0.4s ease;
+  }
+
+  /* أنيميشن دخول اللينكات واحد ورا التاني لما المنيو تفتح */
+  .nav-links.mobile-open li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* تأخير بسيط لكل لينك عشان الحركة تبان أشيك */
+  .nav-links.mobile-open li:nth-child(1) { transition-delay: 0.2s; }
+  .nav-links.mobile-open li:nth-child(2) { transition-delay: 0.3s; }
+  .nav-links.mobile-open li:nth-child(3) { transition-delay: 0.4s; }
+  .nav-links.mobile-open li:nth-child(4) { transition-delay: 0.5s; }
+
+  .nav-links a {
+    color: #ffffff !important;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .nav-contact-btn {
+    width: 80% !important;
+    margin: 10px auto;
+    background: #00d2ff !important;
+  }
+
+  /* تحويل التلت شرط لـ X */
+  .menu-icon.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .menu-icon.active .bar:nth-child(2) { opacity: 0; transform: translateX(20px); }
+  .menu-icon.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}
