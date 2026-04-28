@@ -23,11 +23,10 @@ const ImageGen = () => {
     setError('');
     setImage(null);
 
-    // الرابط العالمي الجديد لسيرفر الصور على Render
     const RENDER_IMAGE_URL = "https://birko-image-api.onrender.com/generate";
 
     try {
-      console.log("🎨 Calling Birko Image Engine at Render...");
+      console.log("🎨 Calling Birko Image Engine...");
       
       const response = await fetch(RENDER_IMAGE_URL, {
         method: "POST",
@@ -36,19 +35,20 @@ const ImageGen = () => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Server error occurred");
+        // تعديل: لو السيرفر مشغول أو فيه مشكلة يطلع رسالة احترافية
+        throw new Error("Birko Engine is a bit busy right now. Please try again in a few seconds.");
       }
 
       const blob = await response.blob();
       const imageUrl = URL.createObjectURL(blob);
       setImage(imageUrl);
-      console.log("✅ Image received from Cloud!");
+      console.log("✅ Image received successfully!");
 
     } catch (err) {
-      console.error("❌ Error generating image:", err);
+      console.error("❌ Error:", err);
+      // تعديل: هنا خلينا الرسالة تظهر إن السيرفر بيجهز نفسه (Waking up) بس باسم Birko
       if (err.name === 'TypeError') {
-        setError("Server is waking up! 😴 Render puts free servers to sleep. Please wait 30 seconds and try again.");
+        setError("Birko Server is waking up... 😴 Please wait about 30 seconds and click Generate again.");
       } else {
         setError(err.message);
       }
@@ -61,21 +61,21 @@ const ImageGen = () => {
     <div className="imgen-container">
       <div className="imgen-card">
         <div className="imgen-header">
-          <span className="badge">BIRKO AI v1.5 - ONLINE</span>
+          <span className="badge">BIRKO AI v1.5 - PRO ONLINE</span>
           <h2>Magic Image Generator</h2>
-          <p className="subtitle">Turn your imagination into art using AI</p>
+          <p className="subtitle">Turn your imagination into art using Birko AI</p>
         </div>
 
         <div className="input-group">
           <textarea 
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g., An astronaut riding a horse on Mars, cinematic style..."
+            placeholder="e.g., A futuristic city designed by Birko, neon lights, 8k resolution..."
           />
           <button onClick={generateImage} disabled={loading} className="gen-btn">
             {loading ? (
               <>
-                <span className="spinner-small"></span> Drawing...
+                <span className="spinner-small"></span> Birko is Drawing...
               </>
             ) : "Generate Image"}
           </button>
@@ -86,13 +86,13 @@ const ImageGen = () => {
         <div className="image-preview">
           {image ? (
             <div className="result-wrapper">
-              <img src={image} alt="AI Result" className="fade-in-image" />
+              <img src={image} alt="Birko AI Result" className="fade-in-image" />
               <div className="action-buttons-container">
                 <a href={image} download="birko-ai-result.png" className="action-button download-button">
-                  <span>📥</span> Download
+                  <span>📥</span> Download Art
                 </a>
                 <button onClick={() => setImage(null)} className="action-button clear-button">
-                  <span>🗑️</span> Clear
+                  <span>🗑️</span> New Design
                 </button>
               </div>
             </div>
@@ -101,13 +101,13 @@ const ImageGen = () => {
               {loading ? (
                 <div className="loader-box">
                   <div className="spinner"></div>
-                  <p>Engine is drawing...</p>
-                  <small style={{color: '#888'}}>This might take 30s if server is waking up</small>
+                  <p>Birko Engine is processing...</p>
+                  <small style={{color: '#888'}}>Waking up the neural networks (30s max)...</small>
                 </div>
               ) : (
                 <div className="empty-state">
                   <span className="magic-icon">✨</span>
-                  <p>Your description will appear here as art</p>
+                  <p>Your imagination will appear here as art</p>
                 </div>
               )}
             </div>
