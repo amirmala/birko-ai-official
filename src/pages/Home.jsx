@@ -47,7 +47,7 @@ const Home = () => {
         <h2 className="section-title">Smart Digital Toolkit</h2>
 
         <div className="tools-grid">
-          {/* Data Cleaner - تم توحيد الكلاسات لضبط التصميم */}
+          {/* Data Cleaner */}
           <div className="tool-card">
             <div className="card-icon">📊</div>
             <h3>Data Analysis - Data Cleaning</h3>
@@ -63,7 +63,7 @@ const Home = () => {
             <Link to="/password-generator" className="card-btn">Use Tool</Link>
           </div>
 
-          {/* Text to Speech - AI Voice */}
+          {/* Text to Speech */}
           <div className="tool-card">
             <div className="card-icon">🎙️</div>
             <h3>Text to Speech</h3>
@@ -146,7 +146,15 @@ const Home = () => {
                 <span className="info-icon">📧</span>
                 <div>
                   <h4>Email Us</h4>
-                  <p>support@birkotools.com</p>
+                  {/* تم تحديث الرابط ليفتح Gmail مباشرة */}
+                  <a 
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=berkotools@gmail.com&su=Inquiry from BirkoTools Web" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="contact-info-link"
+                  >
+                    berkotools@gmail.com
+                  </a>
                 </div>
               </div>
               <div className="info-item">
