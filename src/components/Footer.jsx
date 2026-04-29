@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import './Footer.css';
 
 const Footer = () => {
@@ -44,12 +44,14 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* العمود الرابع: التواصل - تم تحديث الإيميل هنا */}
+        {/* العمود الرابع: التواصل - استخدام Gmail Web Link كحل بديل */}
         <div className="footer-column contact-col">
           <h3>Contact Us</h3>
           <p>لأي استفسار أو دعم فني، لا تتردد في مراسلتنا:</p>
           <a 
-            href="mailto:berkotools@gmail.com?subject=Support Request - BirkoTools" 
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=berkotools@gmail.com&su=Support Request - BirkoTools" 
+            target="_blank" 
+            rel="noopener noreferrer" 
             className="footer-mail"
           >
             berkotools@gmail.com
