@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"; // ضفنا useEffect هنا
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import ReactGA from "react-ga4"; // استيراد المكتبة
+import ReactGA from "react-ga4";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -12,16 +12,22 @@ import CodeMinifier from "./pages/CodeMinifier";
 import ImageGen from "./pages/ImageGen"; 
 import "./App.css";
 
-// تهيئة جوجل أناليتكس بالـ ID الجديد بتاعك
+// 1. تهيئة جوجل أناليتكس (مرة واحدة فقط)
 ReactGA.initialize("G-G7E1GZPJTF");
 
-// Component صغير لمراقبة تغيير الصفحات
-const AnalyticsTracker = () => {
+// 2. Component لحل مشكلة الـ Scroll وتتبع الصفحات (الرادار)
+const AppTracker = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // بيبعت لجوجل إن المستخدم دخل صفحة معينة كل ما اللينك يتغير
-    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
+    // حل مشكلة الموبايل: أول ما الصفحة تتغير اطلّع فوق خالص
+    window.scrollTo(0, 0);
+
+    // تسجيل زيارة الصفحة في جوجل أناليتكس
+    ReactGA.send({ 
+      hitType: "pageview", 
+      page: location.pathname + location.search 
+    });
   }, [location]);
 
   return null;
@@ -30,7 +36,9 @@ const AnalyticsTracker = () => {
 function App() {
   return (
     <Router>
-      <AnalyticsTracker /> {/* تتبع حركة المستخدم بين الصفحات */}
+      {/* استدعاء الـ Tracker جوه الـ Router */}
+      <AppTracker /> 
+      
       <div className="App-wrapper">
         <Navbar />
         
