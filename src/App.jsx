@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import ReactGA from "react-ga4";
 import Navbar from "./components/Navbar";
@@ -10,20 +10,21 @@ import TextToSpeech from "./pages/TextToSpeech";
 import PasswordChecker from "./pages/PasswordChecker"; 
 import CodeMinifier from "./pages/CodeMinifier"; 
 import ImageGen from "./pages/ImageGen"; 
+import DataCleaner from "./pages/DataCleaner"; // استيراد أداة الداتا الجديدة
 import "./App.css";
 
-// 1. تهيئة جوجل أناليتكس (مرة واحدة فقط)
+// 1. تهيئة جوجل أناليتكس (الرادار)
 ReactGA.initialize("G-G7E1GZPJTF");
 
-// 2. Component لحل مشكلة الـ Scroll وتتبع الصفحات (الرادار)
+// 2. كود تتبع الصفحات وحل مشكلة السكرول في الموبايل
 const AppTracker = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // حل مشكلة الموبايل: أول ما الصفحة تتغير اطلّع فوق خالص
+    // حل مشكلة الموبايل: العودة لأول الصفحة عند التنقل
     window.scrollTo(0, 0);
 
-    // تسجيل زيارة الصفحة في جوجل أناليتكس
+    // إرسال البيانات لجوجل أناليتكس
     ReactGA.send({ 
       hitType: "pageview", 
       page: location.pathname + location.search 
@@ -36,9 +37,7 @@ const AppTracker = () => {
 function App() {
   return (
     <Router>
-      {/* استدعاء الـ Tracker جوه الـ Router */}
       <AppTracker /> 
-      
       <div className="App-wrapper">
         <Navbar />
         
@@ -51,6 +50,9 @@ function App() {
             <Route path="/text-to-speech" element={<TextToSpeech />} />
             <Route path="/code-minifier" element={<CodeMinifier />} />
             <Route path="/image-generator" element={<ImageGen />} />
+            
+            {/* أداة تحليل وتنظيف البيانات الجديدة */}
+            <Route path="/data-cleaner" element={<DataCleaner />} /> 
           </Routes>
         </main>
 

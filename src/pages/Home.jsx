@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Home.css';
 
@@ -45,8 +45,16 @@ const Home = () => {
       {/* 2. Tools Section */}
       <section id="tools" className="tools-section">
         <h2 className="section-title">Smart Digital Toolkit</h2>
-        
+
         <div className="tools-grid">
+          {/* Data Cleaner - تم توحيد الكلاسات لضبط التصميم */}
+          <div className="tool-card">
+            <div className="card-icon">📊</div>
+            <h3>Data Analysis - Data Cleaning</h3>
+            <p>Analyze, clean duplicates, and format your Excel/CSV files instantly.</p>
+            <Link to="/data-cleaner" className="card-btn">Use Tool</Link>
+          </div>
+
           {/* Password Generator */}
           <div className="tool-card">
             <div className="card-icon">🔐</div>
@@ -63,7 +71,7 @@ const Home = () => {
             <Link to="/text-to-speech" className="card-btn">Convert Now</Link>
           </div>
 
-          {/* AI Image Generator - (If you have a page for it) */}
+          {/* AI Image Generator */}
           <div className="tool-card">
             <div className="card-icon">🎨</div>
             <h3>AI Image Generator</h3>
@@ -79,7 +87,7 @@ const Home = () => {
             <Link to="/wifi-generator" className="card-btn">Use Tool</Link>
           </div>
 
-          {/* Strength Checker - تم التعديل هنا ليعمل الزرار */}
+          {/* Strength Checker */}
           <div className="tool-card">
             <div className="card-icon">🔍</div>
             <h3>Strength Checker</h3>
