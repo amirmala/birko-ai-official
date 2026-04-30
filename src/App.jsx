@@ -1,6 +1,7 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import ReactGA from "react-ga4";
+import { Analytics } from "@vercel/analytics/react"; // 1. استيراد فيرسيل أناليتكس
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -10,21 +11,18 @@ import TextToSpeech from "./pages/TextToSpeech";
 import PasswordChecker from "./pages/PasswordChecker"; 
 import CodeMinifier from "./pages/CodeMinifier"; 
 import ImageGen from "./pages/ImageGen"; 
-import DataCleaner from "./pages/DataCleaner"; // استيراد أداة الداتا الجديدة
+import DataCleaner from "./pages/DataCleaner"; 
 import "./App.css";
 
-// 1. تهيئة جوجل أناليتكس (الرادار)
+// تهيئة جوجل أناليتكس
 ReactGA.initialize("G-G7E1GZPJTF");
 
-// 2. كود تتبع الصفحات وحل مشكلة السكرول في الموبايل
 const AppTracker = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // حل مشكلة الموبايل: العودة لأول الصفحة عند التنقل
     window.scrollTo(0, 0);
 
-    // إرسال البيانات لجوجل أناليتكس
     ReactGA.send({ 
       hitType: "pageview", 
       page: location.pathname + location.search 
@@ -50,13 +48,13 @@ function App() {
             <Route path="/text-to-speech" element={<TextToSpeech />} />
             <Route path="/code-minifier" element={<CodeMinifier />} />
             <Route path="/image-generator" element={<ImageGen />} />
-            
-            {/* أداة تحليل وتنظيف البيانات الجديدة */}
             <Route path="/data-cleaner" element={<DataCleaner />} /> 
           </Routes>
         </main>
 
         <Footer />
+        {/* 2. إضافة التحليلات هنا عشان تشتغل مع كل الصفحات */}
+        <Analytics /> 
       </div>
     </Router>
   );
